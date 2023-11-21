@@ -1,0 +1,55 @@
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+.profil {
+    display: flex;
+    width: 1000px;
+}
+  
+  .profile-image {
+    flex: 1; 
+    width: 400px; 
+  }
+  
+  .profile-image img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .profile-info {
+    flex: 2; 
+    margin-left: 4em;
+  }
+
+  .name {
+    font-size: 42px;
+  }
+
+  .name p{
+    margin-top: -10px;
+    letter-spacing: 1px;
+    color: #0FE035;
+    font-family: var(--font-roboto);
+    font-size: 14px;
+  }
+
+  .name h1{
+    font-family: var(--font-roboto);
+    font-weight: 400;
+  }
+
+  .adresse {
+    padding-top: 1em;
+    font-family: var(--font-roboto);
+  }
+
+  .adresse p{
+    font-size: 18px;
+    margin-top: 10px;
+  }

@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=width-device, initial-scale=1.0">
+
+<header>
+    <div  class="sticky">
+    <div class="container">
+        
+        <div class="row">
+                <div class="logo">
+                    <h1>logo</h1>
+                </div>
+            </div>
+
+            <div class="menu" [ngClass]="{ 'open': isMenuOpen }">
+                <ul>
+                    <li> <a href=""> Homme </a></li>
+                    <li> <a href=""> Communauté </a></li>
+                    <li> <a href=""> Nid </a></li>
+                </ul>
+            </div>
+
+            <div class="bar" (click)="toggleMenu()" [class.open]="isMenuOpen">
+                <p>Menu</p>
+            </div>
+
+            <div class="logOut">
+                <h2>Se deconnéter</h2>
+            </div>
+    </div>
+</div>
+</header>

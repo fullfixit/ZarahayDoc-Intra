@@ -1,0 +1,49 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<div class="body">
+    
+<div class="card">
+    <h2>Connexion</h2>
+
+
+    <div class="profile-image">
+        <div class="profile-picture">
+            <img src="../../../assets/img/user.png">
+        </div>
+
+    </div>
+
+    <span>Photo de profil</span>
+
+    <div class="input-group">
+        <label for="firstName">Prénom :</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Entrez votre prénom" [(ngModel)]="sign.name">
+    </div>
+
+    <div class="input-group">
+        <label for="lastName">Nom :</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Entrez votre nom" [(ngModel)]="sign.firstname">
+    </div>
+
+    <div class="input-group">
+        <label for="mail">Mail :</label>
+        <input type="text" id="mail" name="mail" placeholder="Entrez votre prénom" [(ngModel)]="sign.mail">
+    </div>
+
+    <div class="input-group">
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" me="password" placeholder="Entrez votre mot de passe" [(ngModel)]="sign.password">
+    </div>
+
+
+    <button (click)="onSignUp()" class="submit-button">Se connecter</button>
+
+    <div class="log">
+        <a routerLink="/" routerLinkActive="active">Vous possédez déja un compte ?</a>
+    </div>
+</div>
+
+
+</div>

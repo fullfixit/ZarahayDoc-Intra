@@ -1,0 +1,24 @@
+.container {
+    background-color: #ececec;
+}
+
+.body {
+    display: flex;
+  }
+  
+  .column {
+    box-sizing: border-box;
+  }
+  
+  .first-column {
+    flex: 25%;
+  }
+  
+  .second-column {
+    flex: 50%;
+  }
+  
+  .third-column {
+    flex: 25%;
+  }
+  

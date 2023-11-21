@@ -1,0 +1,123 @@
+.sticky {
+    padding-bottom: 4em;
+}
+
+.container {
+    height: 65px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 100;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    background-color: var(--first-color);
+}
+
+.bar {
+    display: none;
+    margin-right: 10px;
+    font-size: 20px;
+    color: var(--first-color);
+}
+
+header .logo {
+    flex: 1;
+    color: var(--third-color);
+    font-family: var(--font-poppins);
+    margin-left: 15px;
+}
+
+.logOut {
+    font-family: var(--font-poppins);
+    padding-right: 15px;
+    color: var(--third-color);
+}
+
+.LogOut h2 {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu ul {
+    padding-left: 20px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+.menu li {
+    margin: 0 20px;
+    font-size: 14px;
+}
+
+.menu ul li a {
+    font-family: var(--font-poppins);
+    text-decoration: none;
+    color: var(--third-color);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.menu ul li a:hover {
+    border-bottom: 2px solid var(--second-color);
+    color: var(--second-color);
+}
+
+.menu.open {
+    left: 0;
+}
+
+.menu.open {
+    right: 0;
+    left: auto;
+}
+
+@media screen and (max-width: 620px) {
+    .bar {
+        z-index: 1000;
+        display: block;
+        top: 20px;
+        left: 20px;
+    }
+
+    header .logo {
+        z-index: 1000;
+        position: absolute;
+        top: 15px;
+        left: 5px;
+    }
+
+    .menu {
+        top: 0;
+        right: -100%; /* Modifiez 'left' en 'right' et ajoutez 'right: -100%;' */
+        position: absolute;
+        background-color: var(--second-color);
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease-in-out;
+    }
+
+    .menu ul {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu ul li{
+        margin: 25px;
+        font-size: 25px;
+    }
+
+    .menu.open {
+        right: 0;
+    }
+
+    .logOut{
+        display: none;
+    }
+    
+}

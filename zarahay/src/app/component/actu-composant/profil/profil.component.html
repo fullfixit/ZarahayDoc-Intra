@@ -1,0 +1,35 @@
+<div class="container">
+<div class="content">
+<div class="card">
+    <div class="profile-image">
+        <div class="profile-picture">
+            <img src="../../../assets/img/user.png">
+        </div>
+    </div>
+
+    <div class="name" *ngIf="loggedInUser">
+        <h2>{{loggedInUser.lastName}} {{loggedInUser.firstName}}</h2>
+    </div>
+
+    <div class="profession">
+        <p>Elève</p>
+    </div>
+
+    <div class="rank">
+        <span>Rang: 4 étoiles</span>
+    </div>
+
+    <div class="edit">
+    <button type="button" routerLink="/profil" routerLinkActive="active">VIEW PROFIL</button>
+    </div>
+</div>
+
+
+<div class="share">
+    <div class="pub">
+    <a> Créer un publication</a>
+    <h2>+</h2>
+    </div>
+</div>
+</div>
+</div>

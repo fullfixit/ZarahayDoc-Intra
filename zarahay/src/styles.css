@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto:wght@300;500&display=swap');
+
+:root {
+    --first-color: #ffffff;
+    --second-color : #006633;
+    --third-color : #555;
+    
+    --title-size: 38px;
+    --sub-size: 24px;
+    --par-size: 18px;
+
+    --font-poppins : 'Poppins', sans-serif;
+    --font-play : 'Poppins', sans-serif;
+    --font-roboto : 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+}
