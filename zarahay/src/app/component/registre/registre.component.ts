@@ -6,13 +6,13 @@ import { ActuComponent } from '../actu-composant/actu/actu.component';
 import { ServiceStorageService } from 'src/app/service-storage.service';
 import { SignComponent } from '../sign/sign.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ServiceService } from 'src/app/service.service';
 
 interface User {
-  lastName: string;
+  name: string;
   mail: string;
   password: string;
 }
-
 
 
 @Component({
@@ -29,58 +29,55 @@ interface User {
 })
 export class RegistreComponent {
   signUp: any[] = [];
+  isAuthenticated: boolean = false;
+  username: string = '';
 
   login: User = {
-    lastName: '',
+    name: '',
     mail: '',
     password: '',
   };
 
   screenWidth: number;
+  userInfo: { name: string; firstname: string; mail: string; } | null | undefined;
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private serviceStorage: ServiceStorageService, private cookieService: CookieService ) {
+  constructor(private router: Router, private route: ActivatedRoute, private serviceStorage: ServiceStorageService, private cookieService: CookieService, private serviceService: ServiceService ) {
     this.screenWidth = window.innerWidth;
   }
 
-
-  ngOnInit(): void {
-    const localData = localStorage.getItem('signUp');
-    if (localData !== null) {
-      this.signUp = JSON.parse(localData);
-    };
-
-    const loggedInUserCookie = this.cookieService.get('loggedInUser');
-    if (loggedInUserCookie) {
-      const loggedInUser = JSON.parse(loggedInUserCookie);
-    }
-  }
   
-  
-
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
     this.screenWidth = window.innerWidth;
   }
 
+  ngOnInit(): void {
+    // Souscrivez aux changements de l'état de connexion et de l'information de l'utilisateur
+    this.serviceService.getIsAuthenticated().subscribe((isAuthenticated) => {
+    this.isAuthenticated = isAuthenticated;
+   });
+
+   this.serviceService.getUserInfo().subscribe((userInfo) => {
+    this.userInfo = userInfo;
+  });
+  }
+  
   onLogIn() {
-    const isExits = this.signUp.find(m => m.lastName == this.login.lastName && m.password == this.login.password);
-    if (isExits != undefined) {
-
-      // Définir le cookie lors de la connexion
-      const loggedInUser = isExits;
-      this.cookieService.set('loggedInUser', JSON.stringify(loggedInUser));
-
-      // Stocker l'utilisateur connecté dans le service
-      this.serviceStorage.setLoggedInUser(loggedInUser);
-
-      this.router.navigate(['/home'])
-    } else {
-      alert('Wrong no information')
-    }
-  };
-
-  getLoggedInUserInfo() {
-    return this.serviceStorage.getLoggedInUser();
+    this.serviceService.login(this.login.name, this.login.password).subscribe(
+      (response) => {
+        console.log(response);
+        // Les informations d'authentification ont déjà été stockées dans les cookies par le service
+        // Pas besoin de répéter cela ici
+  
+        // Naviguez vers la page d'accueil après la connexion réussie
+        this.cookieService.set('my_auth_token', response.token);
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        console.error(error);
+        alert('Nom d\'utilisateur ou mot de passe incorrect');
+      }
+    );
   }
 }

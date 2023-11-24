@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ServiceStorageService } from 'src/app/service-storage.service';
 import { CookieService } from 'ngx-cookie-service';
 import { RouterModule } from '@angular/router';
+import { ServiceService } from 'src/app/service.service';
 
 @Component({
   selector: 'app-profil',
@@ -15,20 +16,26 @@ import { RouterModule } from '@angular/router';
 })
 export class ProfilComponent implements OnInit{
 
-  loggedInUser: any;
+  name: string | null = null;
+  firstname: string | null = null;
+  mail: string | null = null;
 
-  constructor(private cookieService: CookieService, private serviceStorage: ServiceStorageService){}
-
-  ngOnInit(): void {
-    const loggedInUserCookie = this.cookieService.get('loggedInUser');
-
-    if (loggedInUserCookie) {
-      this.loggedInUser = JSON.parse(loggedInUserCookie);
-    } else {
-      this.loggedInUser = this.serviceStorage.getLoggedInUser();
-    }
-
-    console.log('Utilisateur connecté :', this.loggedInUser);
-  }
+  constructor(private serviceService: ServiceService) {}
   
+  ngOnInit(): void {
+    // Souscrivez à l'Observable pour obtenir les données du service
+    this.serviceService.getUserInfo().subscribe(userInfo => {
+      if (userInfo) {
+        // Si userInfo n'est pas null, mettez à jour les propriétés du composant
+        this.name = userInfo.name;
+        this.firstname = userInfo.firstname;
+        this.mail = userInfo.mail;
+      } else {
+        // Gérez le cas où userInfo est null, par exemple, si l'utilisateur n'est pas connecté
+        this.name = null;
+        this.firstname = null;
+        this.mail = null;
+      }
+    });
+  }
 }

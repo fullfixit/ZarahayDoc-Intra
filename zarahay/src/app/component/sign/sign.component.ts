@@ -54,9 +54,8 @@ export class SignComponent implements OnInit{
     this.serviceService.signUp(this.sign).subscribe(
       (response) => {
         console.log(response); // Affichez la réponse du backend (peut être supprimé en production)
-        
-        // Sauvegardez la réponse ou effectuez d'autres actions en fonction de votre besoin
 
+        alert('Inscription réussie !');
         // Réinitialisez le formulaire après une inscription réussie
         this.sign = { name: '', firstname: '', password: '', mail: '' };
       },
